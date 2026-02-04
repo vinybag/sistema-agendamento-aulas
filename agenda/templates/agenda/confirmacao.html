@@ -1,0 +1,21 @@
+{% extends 'agenda/base.html' %}
+
+{% block title %}Agendamento Confirmado{% endblock %}
+
+{% block content %}
+
+<h1>Aula agendada com sucesso</h1>
+
+<p>
+    <strong>Aluna(o):</strong> {{ agendamento.nome_aluna }} <br>
+    <strong>Aula:</strong> {{ agendamento.aula.nome }} <br>
+    <strong>Dia da semana:</strong> {{ agendamento.aula.dia_semana }} <br>
+    <strong>Data escolhida:</strong> {{ agendamento.data|date:"d/m/Y" }} <br>
+    <strong>Horário:</strong> {{ agendamento.horario }}
+</p>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a href="{% url 'agendar' %}">Agendar outra aula</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'agenda/base.html' %}
+
+{% block title %}Agendar Aula Experimental{% endblock %}
+
+{% block content %}
+
+<h1>Aula Experimental</h1>
+
+{% if erro %}
+    <div class="alerta-erro">
+        {{ erro }}
+    </div>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Nome do responsável</label>
+    <input type="text" name="nome_responsavel" required>
+
+    <label>Nome da aluna(o)</label>
+    <input type="text" name="nome_aluna" required>
+
+    <label>Idade da aluna(o)</label>
+    <input type="number" name="idade_aluna" required>
+
+    <label>E-mail</label>
+    <input type="email" name="email" required>
+
+    <label>Telefone</label>
+    <input type="text" name="telefone" required>
+
+    <label>Escolha a aula</label>
+    <select name="aula" required>
+        <option value="">Selecione</option>
+        {% for aula in aulas %}
+            <option value="{{ aula.id }}">
+                {{ aula.nome }} – {{ aula.dia_semana }} às {{ aula.horario }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label>Data da aula experimental</label>
+    <input 
+         type="date" 
+         name="data" 
+         required 
+         min="{{ hoje }}">
+
+    <button type="submit">Agendar Aula</button>
+</form>
+
+{% endblock %}
+
+
